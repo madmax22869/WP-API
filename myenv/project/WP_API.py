@@ -24,6 +24,11 @@ def main():
     print("Request Token URL:", auth_url)
 
     response = requests.get(auth_url)
+
+    print("please type update interval in seconds (number only)")
+    time_interval = input()
+
+    time_interval_int = int(time_interval)
  
     if response.status_code == 201:
         access_token = json.loads(response.text).get("access_token")
@@ -42,7 +47,7 @@ def main():
       add_upd_customers(synced_customers['add_upd'])
       remove_customers(synced_customers['del'])
     
-      time.sleep(60)
+      time.sleep(time_interval_int)
     
     
 def sync_wp_to_db(from_wp, from_db):
